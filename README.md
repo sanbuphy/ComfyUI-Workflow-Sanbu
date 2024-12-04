@@ -1,7 +1,7 @@
 # ComfyUI-Workflow-Sanbu
 
 <div align="center">
-<img src="title.png">
+<img src="title.jpg">
 <b>散步的 ComfyUI 工作流合集 | Sanbu's ComfyUI Workflow Collection</b>
 </div>
 
