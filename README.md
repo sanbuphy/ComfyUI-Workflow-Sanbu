@@ -7,7 +7,7 @@
 
 <br><br>
 
-包含自制与转发 Comfyui 工作流，转发部分会注明原作者及其对应仓库出处。
+个人用 Comfyui 工作流，转载部分会注明原作者及其对应仓库出处。
 如有帮助欢迎 star，加快合集更新。
 
 ## 快速开始
@@ -60,7 +60,18 @@ Comfyui 页面查看硬件资源、显卡占用 <https://github.com/crystian/Com
 
 - 在图片结点右键，选择遮罩编辑器（MaskEditor）即可进行 mask 绘制；或传入带透明通道图像使用。
 
+<div align="center">
+<img src="workflow/1-basic/workflow_basic_image_operation_SetGetNode.png">
+<b>节点复用设置</b>
+</div>
+
+- 安装复用节点插件 https://github.com/kijai/ComfyUI-KJNodes
+- 创建 SetNode 节点，可以传入任意工作流的输出作为备用，根据重命名结果可操作
+- 创建 GetNode 节点，可根据重命名结果获得 SetNode 节点的输出
+
 #### 图像生成
+
+包含普通生成图像工作流，以及条件控制（控制网络）图像生成工作流。
 
 ##### **SD1.5**
 
@@ -76,11 +87,33 @@ Comfyui 页面查看硬件资源、显卡占用 <https://github.com/crystian/Com
 - 使用时更换 checkpoint 为任意 SD1.5 模型
 
 <div align="center">
-<img src="workflow/1-basic/workflow_SD1.5_txt2img_condition.png">
+<img src="workflow/1-basic/workflow_SD1.5_txt2img_region_condition.png">
 <b>SD1.5 条件 latent 分区域生成</b>
 </div>
 
 - 使用 Conditioning (Set Area) 结点控制不同区域生成时的条件，根据不同区域的需求得到最后的生成图像
+
+
+<div align="center">
+<img src="workflow/1-basic/workflow_SD1.5_controlnet_txt2img.png">
+<b>SD1.5 控制网络 多个综合</b>
+</div>
+
+- 下载控制网络权重，可获取全部模型：
+
+```python
+from modelscope import snapshot_download
+model_dir = snapshot_download('AI-ModelScope/ControlNet-v1-1', cache_dir='./ComfyUI/models/controlnet/')
+print('安装完成')
+```
+
+<div align="center">
+<img src="workflow/1-basic/workflow_SD1.5_controlnet_multi_openpose_txt2img.png">
+<b>SD1.5 控制网络 openpose 多人物</b>
+</div>
+
+- 可以很轻松使用多个人物的 openpose 创建稳定的人物姿态，测试图片可以在[该地址获取](https://comfyanonymous.github.io/ComfyUI_examples/controlnet/pose_worship.png)
+
 
 ##### **SDXL**
 
@@ -133,6 +166,13 @@ Flux dev 和 schnell 都没有负面提示，因此CFG 应该设置为 1.0，意
 
 ##### **SD3.5**
 
+模型下载地址 <https://www.modelscope.cn/models/cutemodel/comfyui-sd3.5-medium>
+
+<div align="center">
+<img src="workflow/1-basic/workflow_flux-schnell_txt2img.png">
+<b>sd3.5 fp8 文生图工作流</b>
+</div>
+
 ### 二、图像标签获取
 
 <div align="center">
@@ -147,8 +187,18 @@ Flux dev 和 schnell 都没有负面提示，因此CFG 应该设置为 1.0，意
 
 ### 三、图像放大
 
-本地模型放大
+- 模型文件参考下载 <https://www.modelscope.cn/models/cutemodel/Resolution-model/files>
+- 模型文件放在 models/upscale_models 目录下
 
+<div align="center">
+<img src="workflow/3-upscale/workflow_upscale_txt2img.png">
+<b>超分辨率图像放大</b>
+</div>
+
+<div align="center">
+<img src="workflow/3-upscale/workflow_upscale_resize_latent_txt2img.png">
+<b>resize latent缩放 图像放大</b>
+</div>
 
 ### 四、图像抠图
 
@@ -187,3 +237,5 @@ captiopn 工作流
 ### Reference
 
 感谢以下作者网站提供的灵感
+
+Comfyui 官方教程： <https://comfyanonymous.github.io/ComfyUI_examples/>
