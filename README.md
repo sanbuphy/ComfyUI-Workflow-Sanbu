@@ -149,6 +149,7 @@ flux models 中存放文件夹对应：
 <img src="workflow/1-basic/workflow_flux-dev-full_txt2img.png">
 <b>Flux 统一dev fp8 文生图工作流</b>
 </div>
+
 - 包含了clip和vae的多合一模型
 
 Flux dev 和 schnell 都没有负面提示，因此CFG 应该设置为 1.0，意味着忽略负面提示。
@@ -157,6 +158,7 @@ Flux dev 和 schnell 都没有负面提示，因此CFG 应该设置为 1.0，意
 <img src="workflow/1-basic/workflow_flux-dev_txt2img.png">
 <b>Flux dev fp8 文生图工作流</b>
 </div>
+
 - clip和unet部分分开下载的模型  
 
 <div align="center">
@@ -169,9 +171,11 @@ Flux dev 和 schnell 都没有负面提示，因此CFG 应该设置为 1.0，意
 模型下载地址 <https://www.modelscope.cn/models/cutemodel/comfyui-sd3.5-medium>
 
 <div align="center">
-<img src="workflow/1-basic/workflow_flux-schnell_txt2img.png">
+<img src="workflow/1-basic/workflow_SD3.5_txt2img.png">
 <b>sd3.5 fp8 文生图工作流</b>
 </div>
+
+- 可以只使用一个文本编码器，或者使用三个文本编码器
 
 ### 二、图像标签获取
 
@@ -202,17 +206,23 @@ Flux dev 和 schnell 都没有负面提示，因此CFG 应该设置为 1.0，意
 
 ### 四、图像抠图
 
-常见抠图模型
+<div align="center">
+<img src="workflow/4-segment/workflow_clipseg.png">
+<b>ClipSeg 分割</b>
+</div>
+- 可以直接 clone 仓库到 custom_nodes 处,直接运行即可使用: https://github.com/sanbuphy/ComfyUI-CLIPSEG
 
 SAM
 
-### 五、局部修复
+### 五、局部修复与扩展
 
 局部重绘
 
 局部修复
 
 面部眼部修复
+
+图像扩展
 
 ### 六、图像参考 / 风格转换
 
